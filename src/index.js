@@ -12,9 +12,13 @@ import { getChapterArr, addTotalChaptersToDom } from "./util.js";
   document.head.appendChild(style);
 
   for (let manga of mangas) {
-    const id = manga.getAttribute("data-id");
-    const data = await fetch(apiUrl + id).then((res) => res.json());
-    let chapterArr = getChapterArr(data.chapter, lang);
-    addTotalChaptersToDom(manga, chapterArr);
+    try {
+      const id = manga.getAttribute("data-id");
+      const data = await fetch(apiUrl + id).then((res) => res.json());
+      let chapterArr = getChapterArr(data.chapter, lang);
+      addTotalChaptersToDom(manga, chapterArr);
+    } catch (error) {
+      continue;
+    }
   }
 })();
