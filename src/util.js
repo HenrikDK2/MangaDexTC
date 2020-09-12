@@ -26,8 +26,8 @@ export function addTotalChaptersToDom(manga, obj) {
   }
 }
 
-export const compareDate = (date) => {
-  const HOUR = 1000 * 30 * 30;
+export const compareDate = (date, minutes) => {
+  const HOUR = 1000 * minutes * minutes;
   const anHourAgo = Date.now() - HOUR;
   return date > anHourAgo;
 };

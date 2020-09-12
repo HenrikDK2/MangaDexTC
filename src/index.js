@@ -3,6 +3,7 @@ import { compareDate, getChapterArr, addTotalChaptersToDom, createDB } from "./u
 (async () => {
   const mangas = document.querySelectorAll(".manga-entry");
   const apiUrl = "https://mangadex.org/api/manga/";
+  const minutes = 30;
   const lang = !localStorage.getItem("lang")
     ? prompt("Chapters language?", "English")
     : localStorage.getItem("lang");
@@ -30,7 +31,7 @@ import { compareDate, getChapterArr, addTotalChaptersToDom, createDB } from "./u
     try {
       const id = manga.getAttribute("data-id");
       let test = await db.get("mangas", id);
-      if (test && !compareDate(test.data)) continue;
+      if (test && !compareDate(test.data, minutes)) continue;
       const data = await fetch(apiUrl + id).then((res) => res.json());
       let chapterArr = getChapterArr(data.chapter, lang);
       await db.put("mangas", { chaptersAmount: chapterArr.length, updated: new Date() }, id);
