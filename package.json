@@ -1,0 +1,25 @@
+{
+  "name": "mangadextotalchapters",
+  "version": "1.0.0",
+  "description": "I made a small Firefox plugin that shows the mangas total amount of chapters in a specific language.",
+  "main": "main.js",
+  "scripts": {
+    "build": "rimraf ./dist -f && npx webpack --config webpack.config.js"
+  },
+  "keywords": [
+    "Manga",
+    "MangaDex",
+    "MangaDex Total Chapters",
+    "Manga chapter counter",
+    "Henrik Mundt Milo"
+  ],
+  "author": "Henrik Mundt Milo",
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.1.0",
+    "rimraf": "^3.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {}
+}

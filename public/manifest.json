@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "MangaDex Total Chapters",
+  "version": "1.0",
+  "description": "Adds a total chapters count for mangas.",
+
+  "icons": {
+    "48": "logo.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://mangadex.org/search*"],
+      "js": ["main.js"]
+    }
+  ]
+}
