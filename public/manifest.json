@@ -13,7 +13,8 @@
       "matches": [
         "*://mangadex.org/search*",
         "*://mangadex.org/titles*",
-        "*://mangadex.org/featured*"
+        "*://mangadex.org/featured*",
+        "*://mangadex.org/genre/*"
       ],
       "js": ["main.js"]
     }
