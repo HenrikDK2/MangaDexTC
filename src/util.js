@@ -3,7 +3,7 @@ export function getChapterArr(chapterObj, lang) {
   let mySet = new Set();
 
   return Object.keys(chapterObj).filter((id) => {
-    if (chapterObj[id]["lang_name"] === lang) {
+    if (chapterObj[id]["lang_name"].toLowerCase().search(lang.toLowerCase()) > -1) {
       let key = chapterObj[id].chapter,
         isNew = !mySet.has(key);
       if (isNew) mySet.add(key);
