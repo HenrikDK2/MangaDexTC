@@ -1,3 +1,5 @@
+import { openDB } from "idb";
+
 //Filter by Language and removes Chapter duplicates.
 export function getChapterArr(chapterObj, lang) {
   let mySet = new Set();
@@ -13,13 +15,31 @@ export function getChapterArr(chapterObj, lang) {
 }
 
 //Add chapterCount into DOM
-export function addTotalChaptersToDom(manga, chapterArr) {
-  if (!manga.querySelector(".totalChapterElement")) {
+export function addTotalChaptersToDom(manga, obj) {
+  if (!manga.querySelector(".totalChapterElement") && obj.chaptersAmount !== undefined) {
     let chapterCountElm = document.createElement("li");
     chapterCountElm.classList.add("list-inline-item", "totalChapterElement");
-    chapterCountElm.innerHTML = `<span>${chapterArr.length}</span>`;
+    chapterCountElm.innerHTML = `<span>${obj.chaptersAmount}</span>`;
     manga.querySelector(".list-inline").append(chapterCountElm);
   } else {
-    chapterCountElm.innerHTML = `<span>${chapterArr.length}</span>`;
+    manga.querySelector(".totalChapterElement > span").textContent = obj.chaptersAmount;
+  }
+}
+
+export const compareDate = (date) => {
+  const HOUR = 1000 * 30 * 30;
+  const anHourAgo = Date.now() - HOUR;
+  return date > anHourAgo;
+};
+
+export async function createDB() {
+  try {
+    return await openDB("MangaDexTC", 1, {
+      upgrade(idb) {
+        idb.createObjectStore("mangas");
+      },
+    });
+  } catch (error) {
+    alert("Browser doesn't support IndexDB, so MangaDexTC doesn't work");
   }
 }
