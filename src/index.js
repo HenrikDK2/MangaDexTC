@@ -30,8 +30,8 @@ import { compareDate, getChapterArr, addTotalChaptersToDom, createDB } from "./u
   for (let manga of mangas) {
     try {
       const id = manga.getAttribute("data-id");
-      let test = await db.get("mangas", id);
-      if (test && !compareDate(test.data, minutes)) continue;
+      let dataObj = await db.get("mangas", id);
+      if (dataObj && !compareDate(dataObj.data, minutes)) continue;
       const data = await fetch(apiUrl + id).then((res) => res.json());
       let chapterArr = getChapterArr(data.chapter, lang);
       await db.put("mangas", { chaptersAmount: chapterArr.length, updated: new Date() }, id);
