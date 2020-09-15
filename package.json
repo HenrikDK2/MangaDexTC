@@ -4,7 +4,8 @@
   "description": "I made a small Firefox plugin that shows the mangas total amount of chapters in a specific language.",
   "main": "main.js",
   "scripts": {
-    "build": "rimraf ./dist -f && npx webpack --config webpack.config.js"
+    "build": "rimraf ./dist -f && npx webpack --config webpack.config.js",
+    "deploy": "sign.bat"
   },
   "keywords": [
     "Manga",

@@ -27,9 +27,10 @@ export function addTotalChaptersToDom(manga, obj) {
 }
 
 export const compareDate = (date, minutes) => {
-  const HOUR = 1000 * minutes * minutes;
-  const anHourAgo = Date.now() - HOUR;
-  return date > anHourAgo;
+  const mins = 60000 * minutes;
+  const expireDate = date + mins;
+  const currentDate = Date.now();
+  return currentDate > expireDate;
 };
 
 export async function createDB() {
